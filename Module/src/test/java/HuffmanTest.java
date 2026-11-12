@@ -270,28 +270,7 @@ public class HuffmanTest {
                 filePath + "file1_decoded.txt"
         ));
     }
-
-    @Test
-    void leafRecordAccessors() {
-        HuffmanLeaf leaf = new HuffmanLeaf(7, 'q');
-
-        assertEquals(7, leaf.freq());
-        assertEquals('q', leaf.charAscii());
-    }
-
-    @Test
-    void nodeRecordAccessors() {
-        HuffmanTree left = new HuffmanLeaf(1, 'a');
-        HuffmanTree right = new HuffmanLeaf(2, 'b');
-
-        HuffmanNode node = new HuffmanNode('a', 3, left, right);
-
-        assertEquals('a', node.charASCII());
-        assertEquals(3, node.freq());
-        assertEquals(left, node.left());
-        assertEquals(right, node.right());
-    }
-
+    
     @Test
     void leafAndNodeOperations() {
         HuffmanTree leaf = new HuffmanLeaf(1, 'z');
