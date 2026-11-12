@@ -431,7 +431,7 @@ public class HuffmanTest {
 
         reader.close();
     }
-    
+
     @Test
     public void testEncodeFile2() throws IOException {
         Huffman.huffmanEncode(
