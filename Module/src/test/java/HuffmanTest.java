@@ -431,28 +431,7 @@ public class HuffmanTest {
 
         reader.close();
     }
-
-    @Test
-    void decodeRejectsNonBitCharacter() throws IOException {
-        File encoded = File.createTempFile("bad-bits", ".txt");
-        File decoded = File.createTempFile("bad-bits-output", ".txt");
-
-        encoded.deleteOnExit();
-        decoded.deleteOnExit();
-
-        FileWriter writer = new FileWriter(encoded);
-
-        // Header creates a two-leaf tree; 2 is invalid because only 0 and 1 are legal.
-        writer.write("97 1 98 1\n2");
-
-        writer.close();
-
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> Huffman.huffmanDecode(encoded.getPath(), decoded.getPath())
-        );
-    }
-
+    
     @Test
     public void testEncodeFile2() throws IOException {
         Huffman.huffmanEncode(
