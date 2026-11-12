@@ -1,0 +1,27 @@
+20 mins: tests for compareTo and combine
+
+20 mins: HuffmanNode and HuffmanLeaf compareTo complete
+
+30 mins: HuffmanNode and HuffmanLead combine complete
+
+20 mins: OrderedQueue tests
+
+40 mins: created OrderedQueue to store list of trees to be combined
+
+30 mins: createHuffTree & tests
+
+40 mins: tests & creation of addCode helper method and createCode
+
+30 mins: cntFreq
+
+20 mins: createHeader
+
+40 mins: huffmanEncode
+
+40 mins: parseHeader
+
+50 mins: huffmanDecode
+
+60 mins: completing special test cases
+
+

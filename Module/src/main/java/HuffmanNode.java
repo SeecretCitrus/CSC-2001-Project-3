@@ -9,17 +9,57 @@
  * right() accessor methods automatically, along with
  * equals()/hashCode()/toString(). Do not rename the components below.
  */
-public record HuffmanNode(int charAscii, int freq, HuffmanTree left, HuffmanTree right)
+public record HuffmanNode(int charASCII, int freq, HuffmanTree left, HuffmanTree right)
         implements HuffmanTree{
 
+    //returns true if tree a comes before tree b
      public boolean comesBefore(HuffmanTree other) {
-        // TODO: implement
-        return false;
-    }
+         switch (other) {
+             case HuffmanLeaf(int otherF, char otherChar):
+                 return this.freq < otherF || (this.freq == otherF && this.charASCII() < otherChar);
+             case HuffmanNode(int otherChar, int otherF, HuffmanTree l, HuffmanTree r):
+                 return this.freq < otherF || (this.freq == otherF && this.charASCII() < otherChar);
+             default:
+                 throw new IllegalArgumentException("comesBefore attempted on non HuffmanNode or HuffmanLeaf");
+         }
+     }
 
+     //creates and returns a new internal Huffman node with a and b as its two children
     public HuffmanTree combine(HuffmanTree other) {
-        // TODO: implement
-        return null;
+        switch (other) {
+            case HuffmanLeaf(int otherF, char otherChar):
+                if (comesBefore(other)) {
+                    if (this.charASCII() < otherChar) {
+                        return new HuffmanNode(this.charASCII(), (this.freq() + otherF), this, other);
+                    } else {
+                        return new HuffmanNode(otherChar, (this.freq() + otherF), this, other);
+                    }
+                } else {
+                    if (this.charASCII() < otherChar) {
+                        return new HuffmanNode(this.charASCII(), (this.freq() + otherF), other, this);
+                    } else {
+                        return new HuffmanNode(otherChar, (this.freq() + otherF), other, this);
+                    }
+                }
+
+            case HuffmanNode(int otherChar, int otherF, HuffmanTree l, HuffmanTree r):
+                if (comesBefore(other)) {
+                    if (this.charASCII() < otherChar) {
+                        return new HuffmanNode(this.charASCII(), (this.freq() + otherF), this, other);
+                    } else {
+                        return new HuffmanNode(otherChar, (this.freq() + otherF), this, other);
+                    }
+                } else {
+                    if (this.charASCII() < otherChar) {
+                        return new HuffmanNode(this.charASCII(), (this.freq() + otherF), other, this);
+                    } else {
+                        return new HuffmanNode(otherChar, (this.freq() + otherF), other, this);
+                    }
+                }
+
+            default:
+                throw new IllegalArgumentException("combine attempted on non HuffmanNode or HuffmanLeaf");
+        }
     }
 
     /**
